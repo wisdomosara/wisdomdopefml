@@ -44,16 +44,16 @@ class EachCampaign extends Component {
                                         <h3>Raised : NGN {this.props.camp.amountAccumulated} of NGN {this.props.camp.amount}</h3>
                                     </div>
                                     <div className="col-3">
-                                        <h3 className="float-right">{Math.round((this.props.camp.amountAccumulated/this.props.camp.amount) * 100)}%</h3>
+                                        <h3 className="float-right">{Math.round(this.props.camp.amountAccumulated/this.props.camp.amount * 100)}%</h3>
                                     </div>
                                 </div>
                             </div>
                             <div className='mb-4'>
-                                <progress className={styles.progress_bar} value={Math.round((this.props.camp.raised/this.props.camp.total) * 100)} max="100"></progress>
+                                <progress className={styles.progress_bar} value={Math.round(this.props.camp.amountAccumulated/this.props.camp.amount * 100)} max="100"></progress>
                             </div>
                             <div className={['d-flex flex-wrap', styles.button_flex].join(" ")}>
                                 <button className={styles.btn1}>FUND THIS CAMPAIGN</button>
-                                <Link className={styles.btn2} role="button" to={`${pageurl.COMPAIGN_PAGE_URL}/${this.props.camp["_id"]}`}>
+                                <Link className={styles.btn2} role="button" to={`${pageurl.FUND_A_CAMPAIGN}${pageurl.COMPAIGN_PAGE_URL}/${this.props.camp["_id"]}`}>
                                     VIEW THIS CAMPAIGN
                                 </Link>
                             </div>

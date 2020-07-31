@@ -68,11 +68,13 @@
 }
 .progress_bar[value]{
     width: 100%;
-    background-color: #FAFAFA !important
+    height: 5px !important;
+    background-color: white !important
 }
 .progress_bar[value]::-webkit-progress-bar{
     background-color: rgb(214, 212, 212);
-    height: 5px !important
+    height: 5px !important;
+    width: 100%;
 }
 .progress_bar[value]::-webkit-progress-value{
     background-color: #FB3F5C !important
@@ -165,6 +167,10 @@
 @media only screen and (min-width:700px) {
     .progress_div{
         width:70%;
+    }
+    .progress_bar[value]{
+      
+        height: 5px !important;
     }
     .progress_bar[value]::-webkit-progress-bar{
         background-color: rgb(214, 212, 212);
