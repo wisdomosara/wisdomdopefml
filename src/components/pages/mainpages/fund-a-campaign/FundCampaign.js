@@ -8,6 +8,8 @@ import fakedata from './fakedata.js';
 import {Link} from 'react-router-dom'
 import pageurl from '../../../router/url/pageurl';
 import axios from 'axios';
+import {getCampaigns} from '../../../../actions/getAllCampaignActions';
+import {connect} from 'react-redux';
 
 
 class EachCampaign extends Component {
@@ -66,9 +68,8 @@ class EachCampaign extends Component {
 }
 
 
-export default class FundCampaign extends Component {
+class FundCampaign extends Component {
         state = {
-           data: [],
             clicked: 0
         }
         handleclick = () => {
@@ -79,19 +80,19 @@ export default class FundCampaign extends Component {
             })
         }
         componentDidMount () {
-            const token = localStorage.getItem('FMLToken');
-            axios.defaults.headers.common['Authorization'] = token;
+            // const token = localStorage.getItem('FMLToken');
+            // axios.defaults.headers.common['Authorization'] = token;
         
-            axios.get(`https://api.fundmylaptop.com/api/campaigns/campaigns`).then(res => {
-              this.setState({
-                data: [...res.data.data]
-              }, () => {
-                console.log(this.state.data);
-              })
-            }).catch(err => {
-              console.log(err);
-            })
-        
+            // axios.get(`https://api.fundmylaptop.com/api/campaigns/campaigns`).then(res => {
+            //   this.setState({
+            //     data: [...res.data.data]
+            //   }, () => {
+            //     console.log(this.state.data);
+            //   })
+            // }).catch(err => {
+            //   console.log(err);
+            // })
+            getCampaigns()
             
           }
     render() {
@@ -100,7 +101,7 @@ export default class FundCampaign extends Component {
             height:60,
             backgroundColor: "#FB3F5C"
         }
-        let comps = this.state.data.map(camp => <EachCampaign camp={camp} key = {camp.id} /> )
+        let comps = this.props.campaigns.data.map(camp => <EachCampaign camp={camp} key= {camp["_id"]} /> )
         return (
             <div className={styles.body}>
                 <Navbar />
@@ -130,3 +131,13 @@ export default class FundCampaign extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => ({
+    campaigns: state.campaigns
+  });
+
+const mapDispatchToProps = () => {
+    return getCampaigns
+}
+  
+export default connect(mapStateToProps, mapDispatchToProps)(FundCampaign);

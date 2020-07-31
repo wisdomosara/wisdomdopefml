@@ -9,7 +9,7 @@ import {
     MAKE_PAYMENT, 
     MAKE_PAYMENT_OTP
 } from './types';
-  
+
 const initialState = {
     createdRequest: false,
     loading: false,
